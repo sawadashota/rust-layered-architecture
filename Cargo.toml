@@ -1,0 +1,26 @@
+[package]
+name = "hello-axum-rs"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+axum = "0.6.1"
+lazy_static = "1.4.0"
+serde = { version = "1.0.152", features = ["derive"] }
+thiserror = "1.0.38"
+tokio = { version = "1.0", features = ["full"] }
+derive-new = "0.5.9"
+serde_with = "2.1.0"
+log = "0.4"
+fern = "0.6"
+tracing = "0.1.37"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+tower = { version = "0.4", features = ["util", "timeout"] }
+tower-http = { version = "0.3.5", features = ["add-extension", "trace", "request-id"] }
+serde_json = "1.0.91"
+chrono = "0.4.23"
+
+ramdomstr = { path = "ramdomstr" }
+paging = { path = "paging" }

@@ -1,0 +1,81 @@
+openapi: 3.0.3
+
+info:
+  title: "Sample API"
+  description: "Just sample"
+  version: "0.0.1"
+
+paths:
+  /health/alive:
+    get:
+      responses:
+        "200":
+          description: Get service status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  /users:
+    get:
+      parameters:
+        - name: page_token
+          in: query
+          schema:
+            $ref: "#/components/schemas/PageToken"
+        - name: page_limit
+          in: query
+          schema:
+            $ref: "#/components/schemas/PageLimit"
+      responses:
+        "200":
+          description: Get users
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  users:
+                    type: array
+                    items:
+                      $ref: "#/components/schemas/User"
+                  page_token:
+                    $ref: "#/components/schemas/PageToken"
+                required:
+                  - users
+                  - page_token
+
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - ok
+      required:
+        - status
+    PageToken:
+      description: Token to get items of next page
+      type: string
+      example: ksdfkiweyfkueryhfkayuw3e
+    PageLimit:
+      description: Limit of return items
+      type: number
+      example: 100
+      maximum: 100
+      minimum: 1
+      default: 100
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+          example: sdjfheru2245h
+        name:
+          type: string
+          example: Alice
+      required:
+        - id
+        - name
